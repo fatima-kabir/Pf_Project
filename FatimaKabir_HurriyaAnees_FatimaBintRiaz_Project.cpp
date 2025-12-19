@@ -71,7 +71,49 @@ void generateReceipt(Customer c);
     
 
 
+void showAvailableRooms() {
+    cout<<"Available Rooms: "<<endl;
+    for(int i = 0; i<5; i++){
+        if(rooms[i].isAvailable){
+            cout<<"Room "<<rooms[i].roomNo<<endl;
+            cout<<"Price: "<<rooms[i].price<<endl;
+        }
+    }
+}
 
+bool isRoomAvailable(int roomNumber, int &roomIndex){
+    bool roomFound = false;
+    roomIndex = 0;
+
+    for(int i = 0; i<5; i++){
+        if(rooms[i].roomNo == roomNumber){
+            roomFound = true;
+            if(rooms[i].isAvailable){
+                roomIndex = i;
+                return true;
+            }
+            else{
+                cout << "Sorry! Room "<<roomNumber<< " is already booked"<<endl;
+                return false;
+            }
+        }
+    }
+    if(!roomFound){
+        cout<<"Room " <<roomNumber<< " does not exist"<<endl;
+    }
+    return false;
+}
+
+void checkOut(int roomNo){
+    for(int i = 0; i<5; i++){
+        if(rooms[i].roomNo == roomNo){
+            rooms[i].isAvailable = true;
+            cout<<"Room Checked Out Successfully"<<endl;
+            return;
+        }
+    }
+    cout<<"Room not found"<<endl;
+}
     
   
        
@@ -202,3 +244,4 @@ void generateReceipt(Customer c){
        
         
     
+
