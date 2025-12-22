@@ -35,41 +35,41 @@ bool isRoomAvailable(int roomNumber, int &index);
 
 void addCustomer();
 void generateReceipt(Customer c);
-
-
-    
-    
-
-
-
-    
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-           
-       
-            
-       
-            
-            
-           
-           
-        
-        
-           
-        
-            
-        
-            
-    
-
+  
+  int main() {
+      mainMenu();
+      return 0;
+  }
+  
+  void mainMenu() {
+      int choice;
+      do {
+          cout<<"HOTEL MANAGEMENT MENU"<<endl;
+          cout<<"1.Show the rooms"<<endl;
+          cout<<"2.Check In"<<endl;
+          cout<<"3.Check Out"<<endl;
+          cout<<"4.Show all the customers"<<endl;
+          cout<<"0.Exit"<<endl;
+          cout<<"Enter your choice: "<<endl;
+          cin>>choice;
+          if(choice == 1)
+              showAvailableRooms();
+      else if(choice == 2)
+             addCustomer();
+          else if(choice == 3) {
+              int r;
+              cout<<"Enter the room number to checkout: "<<endl;
+              cin>>r;
+              checkOut(r);
+          }
+          else if(choice == 4)
+              showAllCustomers();
+          else if(choice == 0)
+              cout<<"Program Ended"<<endl;
+          else
+              cout<<"Invalid Choice"<<endl;
+      } while(choice != 0);
+  }
 
 void showAvailableRooms() {
     cout<<"Available Rooms: "<<endl;
@@ -114,49 +114,6 @@ void checkOut(int roomNo){
     }
     cout<<"Room not found"<<endl;
 }
-    
-  
-       
-            
-            
-        
-    
-
-
-
-    
-            
-
-   
-        
-                           
-                  
-                             
-                                
-        
-			
-               
-                                
-            
-        
-    
-                          
-        
-    
-                            
-
-
-
-    
-        
-            
-            
-            
-        
-    
-    
-
-
 void addCustomer(){
     int availableRoomsCount = 0;
     for(int i = 0; i<5; i++){
@@ -229,6 +186,21 @@ void generateReceipt(Customer c){
     cout<<"Extra Charges: " <<c.extraCharges<<endl;
     cout<<"Total Bill: " <<c.totalBill<<endl;
 }
+void showAllCustomers(){
+     if(customerCount == 0){
+         cout<<"No customers yet"<<endl;
+         return;
+     }
+     cout <<"Customer Records: "<<endl;
+    for (int i = 0; i<customerCount; i++){
+         cout<<"ID: " <<customers[i].id<<endl;
+         cout<<"Rooms: "; 
+	for (int j = 0; j<customers[i].numRooms; j++)
+             cout <<" "<< customers[i].roomNo[j];
+         cout<<"\nDays: "<<customers[i].days<<endl;
+         cout<<"Bill: "<<customers[i].totalBill<<endl;
+     }
+ }
 
 
     
@@ -244,4 +216,5 @@ void generateReceipt(Customer c){
        
         
     
+
 
